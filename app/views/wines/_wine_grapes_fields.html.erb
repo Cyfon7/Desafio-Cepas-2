@@ -1,14 +1,16 @@
-<div class='nested-fields form-inline' >
-    <div class="form-group mr-2">
+<div class="nested-fields form-inline my-2" >
+    <div class="form-group mx-auto">
       <%= f.select :grape_id, Grape.all.collect { |grape| [grape.name, grape.id] }, prompt: "Choose Grape: " %>
-      <% byebug %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :percent %> 
-      <%= f.number_field :percent %>
+    <div class="form-group mx-3">
+      <%= f.label :percent, class: "mr-2" %> 
+      <%= f.number_field :percent, in: 0..100, step: 1 %>
+      <span class="ml-2">(0 - 100%)<span>
     </div>
     
-    <%= link_to_remove_association "Remove Strain", f %>
+    <%= link_to_remove_association f do %>
+      <i class="fas fa-minus-square fa-2x"></i>
+    <% end %>
   
 </div>

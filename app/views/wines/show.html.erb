@@ -10,5 +10,14 @@
   <%= @wine.varietal %>
 </p>
 
+<p>
+  <strong>Strains:</strong>
+  <ul>
+    <% @wine.wine_grapes.order_by_grape.each do |strain| %>
+      <li><%= strain.grape.name %> (<%= strain.percent %> %)</li>
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
 <%= link_to 'Back', wines_path %>
