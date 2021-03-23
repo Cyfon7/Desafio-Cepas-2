@@ -1,0 +1,36 @@
+<%= form_with(model: wine) do |form| %>
+  <% if wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+        <% wine.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :varietal %>
+    <%= form.select :varietal, Wine.varietals.keys %>
+  </div>
+
+  <div id='wine_grapes'>
+    <%= form.fields_for :wine_grapes do |strain_form| %>
+      <%= render 'wine_grapes_fields', f: strain_form %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add strain', form, :wine_grapes, partial: 'wines/wine_grapes_fields' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
