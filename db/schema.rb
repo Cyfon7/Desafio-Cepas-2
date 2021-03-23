@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_041447) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "wine_grapes", id: false, force: :cascade do |t|
+  create_table "wine_grapes", force: :cascade do |t|
     t.bigint "wine_id"
     t.bigint "grape_id"
     t.integer "percent"

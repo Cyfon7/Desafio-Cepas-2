@@ -10,6 +10,7 @@ class CreateJoinTableWineGrapes < ActiveRecord::Migration[5.2]
     end
 
     rename_table :grapes_wines, :wine_grapes
+    add_column :wine_grapes, :id, :primary_key
 
   end
   
