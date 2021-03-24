@@ -9,7 +9,11 @@
       <th scope="col">Name</th>
       <th scope="col">Varietal</th>
       <th scope="col">Strains</th>
-      <th  scope="col" colspan="3"></th>
+
+      <% if current_user.admin %>
+        <th  scope="col" colspan="3"></th>
+      <% end %>
+
     </tr>
   </thead>
 
@@ -19,18 +23,20 @@
         <th scope="row"><%= wine.id %></th>
         <td><%= wine.name %></td>
         <td><%= wine.varietal %></td>
-        <td><ul>
+        <td>
+          <ul>
             <% wine.wine_grapes.order_by_grape.each do |strain| %>
               <li><%= strain.grape.name %> (<%= strain.percent %> %)</li>
             <% end %>
           </ul>
-         
         </td>
+
         <% if current_user.admin %>
           <td><%= link_to 'Show', wine %></td>
           <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
           <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+
       </tr>
     <% end %>
   </tbody>

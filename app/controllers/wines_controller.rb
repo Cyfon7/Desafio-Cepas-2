@@ -1,5 +1,6 @@
 class WinesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, except: :index
   before_action :set_wine, only: %i[ show edit update destroy ]
   
 
