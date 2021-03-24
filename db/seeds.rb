@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Grape.destroy_all
+Grape.delete_all
+User.delete_all
 
+#Some grapes to start with
 grape_name_list = [ "Reisling",
                     "Pino Gris",
                     "Sauvignon Blanc",
@@ -17,3 +19,6 @@ grape_name_list = [ "Reisling",
                     "Syrah",
                     "Cabernet Sauvignon"]
 grape_name_list.each { |grape_name| Grape.create(name: grape_name) }
+
+#Admin account
+User.create(email: "admin@mail.com", password: "password", password_confirmation: "password", admin: true)
