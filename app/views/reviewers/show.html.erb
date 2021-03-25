@@ -15,5 +15,23 @@
   <%= @reviewer.nationality %>
 </p>
 
+<p>
+  <strong>Magazines:</strong>
+  <ol>
+    <% @reviewer.magazines.each do |workplace| %>
+      <li>
+        <div>
+          <%= workplace.name %>
+        </div>
+        <ul>
+          <% workplace.positions.each do |job| %>
+            <li><%= job.name %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ol>
+</p>
+
 <%= link_to 'Edit', edit_reviewer_path(@reviewer) %> |
 <%= link_to 'Back', reviewers_path %>

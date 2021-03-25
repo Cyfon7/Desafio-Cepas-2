@@ -2,12 +2,14 @@
 
 <h1>Reviewers</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Age</th>
       <th>Nationality</th>
+      <th>Magazine</th>
+      <th>Position</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +20,20 @@
         <td><%= reviewer.name %></td>
         <td><%= reviewer.age %></td>
         <td><%= reviewer.nationality %></td>
+        <td>
+          <% reviewer.magazines.each do |workplace| %>
+            <%= workplace.name %>
+          <% end %>
+        </td>
+        <td>
+          <% reviewer.magazines.each do |workplace| %>
+            <ul>
+              <% workplace.positions.each do |job| %> 
+                <li><%= job.name %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', reviewer %></td>
         <td><%= link_to 'Edit', edit_reviewer_path(reviewer) %></td>
         <td><%= link_to 'Destroy', reviewer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
