@@ -10,13 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_222058) do
+ActiveRecord::Schema.define(version: 2021_03_25_010917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "grapes", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "magazines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviewer_magazines", force: :cascade do |t|
+    t.bigint "reviewer_id"
+    t.bigint "magazine_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "position_id"
+    t.index ["magazine_id"], name: "index_reviewer_magazines_on_magazine_id"
+    t.index ["position_id"], name: "index_reviewer_magazines_on_position_id"
+    t.index ["reviewer_id"], name: "index_reviewer_magazines_on_reviewer_id"
+  end
+
+  create_table "reviewers", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "nationality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_222058) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -51,4 +82,5 @@ ActiveRecord::Schema.define(version: 2021_03_24_222058) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "reviewer_magazines", "positions"
 end

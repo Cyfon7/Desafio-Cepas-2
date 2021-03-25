@@ -1,0 +1,41 @@
+<%= form_with(model: reviewer, local: true) do |form| %>
+  <% if reviewer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reviewer.errors.count, "error") %> prohibited this reviewer from being saved:</h2>
+
+      <ul>
+      <% reviewer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nationality %>
+    <%= form.text_field :nationality %>
+  </div>
+
+  <div class="field">
+    <%= form.label :positions %>
+    <%= form.collection_check_boxes(:position_ids, Position.all, :id, :name) do |b| %>
+       <%= b.label class:"label-checkbox" do %>
+          <%= b.check_box + b.text %>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

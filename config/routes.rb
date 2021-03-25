@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :positions
+  resources :reviewers
+  resources :magazines
   resources :grapes
   devise_for :users
   resources :wines

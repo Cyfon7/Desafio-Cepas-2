@@ -1,5 +1,4 @@
 class GrapesController < ApplicationController
-  before_action :authenticate_user!, :authorize_user!
   before_action :set_grape, only: %i[ show edit update destroy ]
 
   # GET /grapes or /grapes.json
