@@ -2,9 +2,11 @@
 
 <h1>Grapes</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +14,8 @@
   <tbody>
     <% @grapes.each do |grape| %>
       <tr>
+        <th scope="row"><%= grape.id %></th>
+        <td><%= grape.name %></td>
         <td><%= link_to 'Show', grape %></td>
         <td><%= link_to 'Edit', edit_grape_path(grape) %></td>
         <td><%= link_to 'Destroy', grape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,3 +27,4 @@
 <br>
 
 <%= link_to 'New Grape', new_grape_path %>
+<%= link_to 'Back', root_path %>

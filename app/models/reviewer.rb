@@ -9,4 +9,7 @@ class Reviewer < ApplicationRecord
     accepts_nested_attributes_for :magazines, reject_if: :all_blank, allow_destroy: true
 
     validates :name, :age, :nationality, presence: true
+
+
+    scope :order_enologist_by_age, -> { order(age: :desc) };
 end

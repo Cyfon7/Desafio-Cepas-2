@@ -7,6 +7,7 @@ class WinesController < ApplicationController
   # GET /wines or /wines.json
   def index
     @wines = Wine.all
+    @average = []
   end
 
   # GET /wines/1 or /wines/1.json
@@ -68,6 +69,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name, :varietal, wine_grapes_attributes: [:id, :wine_id, :grape_id, :percent, :_destroy])
+      params.require(:wine).permit(:name, :varietal, wine_grapes_attributes: [:id, :wine_id, :grape_id, :percent, :_destroy], wine_reviewers_attributes: [:id, :wine_id, :reviewer_id, :score, :_destroy])
     end
 end

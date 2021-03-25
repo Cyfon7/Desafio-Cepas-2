@@ -1,4 +1,6 @@
 class MagazinesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_user!
   before_action :set_magazine, only: %i[ show edit update destroy ]
 
   # GET /magazines or /magazines.json

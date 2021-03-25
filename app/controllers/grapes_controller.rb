@@ -64,6 +64,6 @@ class GrapesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def grape_params
-      params.fetch(:grape, {})
+      params.require(:grape).permit(:name)
     end
 end

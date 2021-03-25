@@ -9,8 +9,11 @@
       <th scope="col">Name</th>
       <th scope="col">Varietal</th>
       <th scope="col">Strains</th>
+      
 
       <% if current_user.admin %>
+        <th scope="col">Score(average)</th>
+        <th scope="col">Enologists</th>
         <th  scope="col" colspan="3"></th>
       <% end %>
 
@@ -32,6 +35,25 @@
         </td>
 
         <% if current_user.admin %>
+          <td>
+            <% wine.wine_reviewers.each do |scores| %>
+              <% @average << scores.score %>
+            <% end %>
+            <% if @average.count > 0 %>
+              <%= @average.sum/@average.count %>
+            <% else %>
+              Without Score
+            <% end %>
+          </td>
+          
+          <td>
+            <ul>
+              <% wine.reviewers.order_enologist_by_age.each do |enologist| %>
+                <li><%= enologist.name %></li>
+              <% end %>
+            </ul>
+          </td>
+
           <td><%= link_to 'Show', wine %></td>
           <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
           <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -46,4 +68,6 @@
 
 <% if current_user.admin %>
   <%= link_to 'New Wine', new_wine_path %>
+  <%= link_to 'New Strain', new_grape_path %>
+  <%= link_to 'New Enologist', new_reviewer_path %>
 <% end %>
