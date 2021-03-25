@@ -14,7 +14,6 @@ class ReviewersController < ApplicationController
   def new
     @reviewer = Reviewer.new
     @reviewer.magazines.build
-
   end
 
   # GET /reviewers/1/edit
@@ -66,6 +65,6 @@ class ReviewersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reviewer_params
-      params.require(:reviewer).permit(:name, :age, :nationality, position_ids: [], magazines_attributes: [:id, :name, :_destroy] )
+      params.require(:reviewer).permit(:name, :age, :nationality, magazines_attributes: [:id, :name, :_destroy, position_ids: []] )
     end
 end

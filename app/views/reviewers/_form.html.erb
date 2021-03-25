@@ -28,21 +28,27 @@
 
   <div class="field">
     <%= form.fields_for :magazines do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="form-group">
+        <%= f.collection_check_boxes :position_ids, Position.all, :id, :name do |b| %>
+          <div class="form-group form-inline">
+            <div>
+                <%= b.check_box %>
+            </div>
+            <div class="ml-1">
+                <%= b.label %>
+            </div>
+          </div>
+        <% end %>  
+      </div>
     <% end %>
   </div>
         
-  <%= form.collection_check_boxes :position_ids, Position.all, :id, :name do |b| %>
-    <div class="form-group form-inline">
-      <div>
-        <%= b.check_box %>
-      </div>
-      <div class="ml-1">
-        <%= b.label %>
-      </div>
-    </div>
-  <% end %>  
+
 
   <div class="actions">
     <%= form.submit %>

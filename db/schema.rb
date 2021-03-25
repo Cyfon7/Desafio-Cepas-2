@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2021_03_25_005712) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "magazines_positions", force: :cascade do |t|
+    t.bigint "magazine_id"
+    t.bigint "position_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["magazine_id"], name: "index_magazines_positions_on_magazine_id"
+    t.index ["position_id"], name: "index_magazines_positions_on_position_id"
+  end
+
   create_table "magazines_reviewers", force: :cascade do |t|
     t.bigint "reviewer_id"
     t.bigint "magazine_id"
@@ -40,15 +49,6 @@ ActiveRecord::Schema.define(version: 2021_03_25_005712) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "positions_reviewers", force: :cascade do |t|
-    t.bigint "reviewer_id"
-    t.bigint "position_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["position_id"], name: "index_positions_reviewers_on_position_id"
-    t.index ["reviewer_id"], name: "index_positions_reviewers_on_reviewer_id"
   end
 
   create_table "reviewers", force: :cascade do |t|

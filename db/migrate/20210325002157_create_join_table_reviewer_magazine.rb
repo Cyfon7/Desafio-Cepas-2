@@ -8,10 +8,6 @@ class CreateJoinTableReviewerMagazine < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-=begin
-    rename_table :magazines_reviewers, :reviewer_magazines
-    add_column :reviewer_magazines, :id, :primary_key
-=end
 
     add_column :magazines_reviewers, :id, :primary_key
   end
