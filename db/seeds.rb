@@ -25,8 +25,8 @@ grape_name_list.each { |grape_name| Grape.create(name: grape_name) }
 #Admin account
 User.create(email: "admin@mail.com", password: "password", password_confirmation: "password", admin: true)
 
-position_name_list = [ "Editor",
+positions_name_list = [ "Editor",
                        "Writer",
                        "Reviewer"]
-position_name_list.each { |position_name| Position.create(name: position_name) }
+positions_name_list.each { |positions_name| Position.create(name: positions_name) }
 
