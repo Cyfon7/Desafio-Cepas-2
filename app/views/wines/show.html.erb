@@ -19,5 +19,31 @@
   </ul>
 </p>
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Enologists</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @wine.reviewers.reviewer_by_age.each do |enologist| %>
+        <tr>
+          <td><%= enologist.name %></td>
+          <td>
+            <ul>
+              <% enologist.wine_reviewers.reviews_current_wine(@wine.id).each do |wine_score| %>
+                  <li><%= wine_score.score %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+        <% end %>
+      
+    </tbody>
+  </table>
+
+
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
 <%= link_to 'Back', wines_path %>

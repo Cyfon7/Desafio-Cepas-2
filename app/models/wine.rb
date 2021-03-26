@@ -12,5 +12,5 @@ class Wine < ApplicationRecord
 
     validates :name, presence: true
     validates :varietal, presence: true
-
+      
 end

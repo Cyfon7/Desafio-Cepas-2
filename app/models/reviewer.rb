@@ -12,4 +12,6 @@ class Reviewer < ApplicationRecord
 
 
     scope :order_enologist_by_age, -> { order(age: :desc) };
+    scope :reviewer_by_age, -> { order(age: :desc) };
+    
 end
